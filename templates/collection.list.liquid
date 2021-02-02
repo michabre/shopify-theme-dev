@@ -1,3 +1,8 @@
+<!--
+
+Alternate template for rendering a Collection
+
+-->
 {% paginate collection.products by 2 %}
   <h1>{{ collection.title }}</h1>
   {% for product in collection.products %}

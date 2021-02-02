@@ -1,3 +1,10 @@
+<!-- 
+
+Used to render a page where all of the collections in the shop are listed
+https://shopify.dev/docs/themes/theme-templates/list-collections-liquid
+
+-->
+
 {% for collection in collections %}
   {% unless collection.handle == 'frontpage' %}
     {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}

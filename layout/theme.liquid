@@ -11,7 +11,8 @@
   {{ 'main.css' | asset_url | stylesheet_tag }}
   {{ 'main.js' | asset_url | script_tag }}
 </head>
-<body>
+<!-- create CSS rules for specific templates: https://shopify.dev/docs/themes/theme-templates/theme-liquid -->
+<body class="{{ template | replace: '.', ' ' | truncatewords: 1, '' }}" id="{{ page_title | handle }}">
 
   {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}

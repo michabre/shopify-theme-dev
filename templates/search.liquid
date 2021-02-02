@@ -1,3 +1,8 @@
+<!--
+
+Used to display the results of a storefront search
+
+-->
 {% paginate search.results by 10 %}
   <form action="/search" method="get" role="search">
     <input type="search" name="q" value="{{ search.terms | escape }}">

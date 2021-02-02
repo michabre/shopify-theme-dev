@@ -1,16 +1,25 @@
+<!-- 
+
+Renders a page for an individual blog article
+https://shopify.dev/docs/themes/theme-templates/article-liquid
+
+-->
 {% assign number_of_comments = article.comments_count %}
+
 {% if comment and comment.created_at %}
   {% assign number_of_comments = article.comments_count %}
 {% endif %}
 
-<h1>{{ article.title }}</h1>
+<h2>{{ article.title }}</h2>
 {% capture author %}<strong>{{ article.author }}</strong>{% endcapture %}
 {% capture date %}<time datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: format: 'month_day_year' }}</time>{% endcapture %}
 {{ article.author }} @ {{ article.created_at }}
 
 <div>{{ article.content }}</div>
+
 {% if blog.comments_enabled? %}
   <h2>{{ number_of_comments }} comments</h2>
+
   {% paginate article.comments by 5 %}
     {% for comment in article.comments %}
       <div>
