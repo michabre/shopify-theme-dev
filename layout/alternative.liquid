@@ -1,5 +1,3 @@
-<!doctype html>
-<html>
 <head>
   <title>{{ page_title }}</title>
   <meta charset="utf-8">
@@ -10,14 +8,12 @@
 
   {{ content_for_header }} <!-- Header hook for plugins -->
   
-  {% render 'html-header' %}
-  {% section 'header' %}
+  {% include 'html-header' %}
 
   <main role="main">
     <div class="container is-fullhd">
       {{ content_for_layout }}
     </div>
   </main>
-
-{% section 'footer' %}
-{% render 'html-footer' %}
+  
+{% include 'html-footer' %}
