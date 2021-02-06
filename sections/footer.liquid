@@ -1,23 +1,50 @@
 <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>{{ section.settings.title }}</strong> Shopify Theme. The source code is licensed
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-    </p>
+  <div class="columns">
+    <div class="column">
+      <div class="content has-text-centered">
+        <p>
+          <strong>{{ settings.store_name }}</strong><br> 
+          {{ settings.store_slogan }}
+        </p>
+      </div>
+    </div>
+
+    {% for block in section.blocks %}
+      <div class="column">
+        {{ block.settings.footer_text }}
+        {{ block.settings.navigation }}
+      </div>
+    {% endfor %}
   </div>
 </footer>
 
 {% schema %}
   {
     "name": "Footer",
+    "max_blocks": 3,
     "tag": "section",
-    "settings": [
+    "blocks": [
       {
-        "id": "title",
         "type": "text",
-        "label": "Title",
-        "default": "Hello world"
+        "name": "Text",
+        "settings": [
+          {
+            "id": "footer_text",
+            "type": "text",
+            "label": "Text"
+          }
+        ]
+      },
+      {
+        "type": "link_list",
+        "name": "Menu",
+        "settings": [
+          {
+            "id": "footer_nav",
+            "type": "link_list",
+            "label": "Add a Menu"
+          }
+        ]
       }
     ]
   }

@@ -18,6 +18,7 @@ const dir = {
   styles: "assets/",
   scripts: "assets/",
   bulma: "node_modules/bulma/bulma.sass",
+  thirdPartyJS: "node_modules/axios/dist/axios.min.js",
 };
 
 // CSS task
@@ -35,7 +36,7 @@ function styles() {
 
 // JS task
 function scripts() {
-  return src([dir.js])
+  return src([dir.thirdPartyJS, dir.js])
     .pipe(concat("main.js"))
     .pipe(
       minify({

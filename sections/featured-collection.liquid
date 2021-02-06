@@ -1,0 +1,50 @@
+{% assign selection = section.settings.featuredCollection %}
+
+<section id="featured-products" class="section">
+  <h2 class="title">{{ section.settings.featuredCollection_title }}</h2>
+  <h3 class="subtitle">{{ section.settings.featuredCollection_tagline }}</h3>
+    <div class="columns">
+        {% for product in collections[selection].products limit:4 %}
+            <div class="column">
+                {% render 'card', image: product.featured_image.src, alt: product.featured_image.alt,  title: product.title, price: product.price, available: product.available, url: product.url, id: product.variants[0].id  %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Featured Collection",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "featuredCollection_title",
+            "label": "Title",
+            "default": "Featured Collection"
+        },
+        {
+            "type": "richtext",
+            "id": "featuredCollection_tagline",
+            "label": "Tagline",
+            "default": "<p>Presenting our <strong>featured</strong> collection.</p>"
+        },
+        {
+            "id": "featuredCollection",
+            "type": "collection",
+            "label": "Choose a Featured Collection"
+        }
+    ]
+  }
+{% endschema %}
+{% stylesheet 'scss' %}
+#featured-products {
+    .card {
+        height: 100%;
+    }
+}
+{% endstylesheet %}
+{% javascript %}
+  $(document).ready(function() {
+   console.log('featured collection loaded');
+  });
+{% endjavascript %}
