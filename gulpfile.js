@@ -18,6 +18,7 @@ const dir = {
   styles: "assets/",
   scripts: "assets/",
   bulma: "node_modules/bulma/bulma.sass",
+  mdi: "node_modules/@mdi/font/scss/materialdesignicons.scss",
   thirdPartyJS: "node_modules/axios/dist/axios.min.js",
 };
 

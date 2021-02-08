@@ -30,7 +30,12 @@
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-          <a href="/cart" class="button is-primary">Cart</a>
+          <a href="/cart" class="button is-primary"><span class="mdi mdi-cart"></span> Cart</a>
+          {% if cart.item_count > 0 %}
+              <div id="CartCount" class="button">
+                <span>{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} | {{ cart.total_price | money }}</span>
+              </div>
+            {% endif %}
           {% if shop.customer_accounts_enabled %}
             {% if customer %}
               <a href="/account" class="button is-light">Account</a>
