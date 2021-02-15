@@ -33,7 +33,7 @@
           <a href="/cart" class="button is-primary"><span class="mdi mdi-cart"></span> Cart</a>
           {% if cart.item_count > 0 %}
               <div id="CartCount" class="button">
-                <span>{{ cart.item_count }} {{ cart.item_count | pluralize: 'item', 'items' }} | {{ cart.total_price | money }}</span>
+                <span id="itemCount">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: 'item', 'items' }} | <span id="totalPrice">{{ cart.total_price | money }}</span>
               </div>
             {% endif %}
           {% if shop.customer_accounts_enabled %}

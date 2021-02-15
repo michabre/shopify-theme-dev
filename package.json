@@ -12,7 +12,10 @@
     "@shopify/theme-addresses": "^4.1.0",
     "axios": "^0.21.1",
     "bulma": "^0.9.2",
-    "minimist": ">=0.2.1"
+    "gulp-uglify": "^3.0.2",
+    "minimist": ">=0.2.1",
+    "swiper": "^6.4.11",
+    "uglify-js": "^3.12.7"
   },
   "devDependencies": {
     "autoprefixer": "^9.5.*",

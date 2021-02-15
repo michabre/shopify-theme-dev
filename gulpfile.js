@@ -10,21 +10,27 @@ const postcss = require("gulp-postcss");
 const rename = require("gulp-rename");
 const concat = require("gulp-concat");
 const minify = require("gulp-minify");
+const uglify = require("gulp-uglify");
 
 // directories
 const dir = {
-  scss: "src/scss/*.scss",
-  js: "src/js/*.js",
+  scss: [
+    "node_modules/bulma/bulma.sass",
+    "node_modules/swiper/swiper-bundle.css",
+    "src/scss/*.scss",
+  ],
+  js: [
+    "node_modules/swiper/swiper-bundle.min.js",
+    "src/js/dependencies/*.js",
+    "src/js/*.js",
+  ],
   styles: "assets/",
   scripts: "assets/",
-  bulma: "node_modules/bulma/bulma.sass",
-  mdi: "node_modules/@mdi/font/scss/materialdesignicons.scss",
-  thirdPartyJS: "node_modules/axios/dist/axios.min.js",
 };
 
 // CSS task
 function styles() {
-  return src([dir.bulma, dir.scss])
+  return src(dir.scss)
     .pipe(plumber())
     .pipe(sass({ outputStyle: "expanded" }))
     .pipe(concat("main.css.liquid"))
@@ -37,7 +43,7 @@ function styles() {
 
 // JS task
 function scripts() {
-  return src([dir.thirdPartyJS, dir.js])
+  return src(dir.js)
     .pipe(concat("main.js"))
     .pipe(
       minify({
@@ -46,6 +52,7 @@ function scripts() {
         },
       })
     )
+    .pipe(uglify())
     .pipe(dest(dir.scripts));
 }
 

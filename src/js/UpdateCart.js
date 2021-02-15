@@ -1,31 +1,20 @@
-const AddToCart = {
-  add: (vid, quan) => {
-    let quantity = quan;
-    let variant_id = vid;
-    let formData = {
-      items: [
-        {
-          id: variant_id,
-          quantity: quantity,
-        },
-      ],
-    };
-
-    fetch("/cart/add.js", {
-      body: JSON.stringify(formData),
+const UpdateCart = {
+  update: () => {
+    console.log("update");
+    fetch("/cart.js", {
       credentials: "same-origin",
       headers: {
         "Content-Type": "application/json",
         "X-Requested-With": "xmlhttprequest",
       },
-      method: "POST",
+      method: "GET",
     })
       .then(function (response) {
         return response.json();
       })
       .then(function (json) {
-        //console.log(json);
-        UpdateCart.update();
+        console.log(json);
+        location.reload();
       })
       .catch(function (err) {
         /* uh oh, we have error. */
