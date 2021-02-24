@@ -1,0 +1,109 @@
+{%- comment -%}
+
+This is the main section of a page. It can contain the following
+sections:
+  - Swiper
+  - Featured Collection
+  - etc.
+
+{%- endcomment -%}
+
+{% for block in section.blocks %}
+  <div class="grid-item" {{ block.shopify_attributes }}>
+    {% case block.type %}
+        {% when 'swiper' %}
+            {% render 'Swiper', some_text:block.settings.swiper_title  %}
+        {% when 'featuredCollection' %}
+          {% render 'FeaturedCollection', 
+            title: block.settings.featuredCollection_title, 
+            tagline: block.settings.featuredCollection_tagline, 
+            selectedCollection: block.settings.featuredCollection %}
+        {% endcase %}
+  </div>
+{% endfor %}
+
+
+{% schema %}
+  {
+    "name": "Main Content",
+    "max_blocks": 6,
+    "blocks": [
+      {
+        "type": "swiper",
+        "name": "Swiper",
+        "limit": 2,
+        "settings": [
+          {
+            "id": "swiper_title",
+            "type": "text",
+            "label": "Title"
+          }
+        ]
+      },
+      {
+        "type": "featuredCollection",
+        "name": "Featured Collection",
+        "limit": 1,
+        "settings": [
+          {
+              "type": "text",
+              "id": "featuredCollection_title",
+              "label": "Title",
+              "default": "Featured Collection"
+          },
+          {
+              "type": "richtext",
+              "id": "featuredCollection_tagline",
+              "label": "Tagline",
+              "default": "<p>Presenting our <strong>featured</strong> collection.</p>"
+          },
+          {
+              "id": "featuredCollection",
+              "type": "collection",
+              "label": "Choose a Featured Collection"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+{% stylesheet 'scss' %}
+.swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      height: calc((100% - 30px) / 2);
+
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+}
+{% endstylesheet %}
+{% javascript %}
+$(function () {
+  var swiper = new Swiper(".swiper-container", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+});
+{% endjavascript %}

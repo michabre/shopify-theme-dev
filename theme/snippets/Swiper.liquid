@@ -1,0 +1,11 @@
+<!-- Swiper -->
+<h3>{{ some_text }}</h3>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        {% for slide in (1..10) %}
+            {% render 'swiper-slide', number: slide %}
+        {% endfor %}
+    </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+</div>
