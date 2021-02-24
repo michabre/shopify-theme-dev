@@ -1,0 +1,49 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Lakwatzero DevOne",
+    "theme_version": "1.0.0",
+    "theme_author": "Shopify",
+    "theme_documentation_url": "https://github.com/Shopify/themekit",
+    "theme_support_url": "https://github.com/Shopify/themekit/issues"
+  },
+  {
+    "name": "Store Details",
+    "settings": [
+      {
+        "type": "text",
+        "id": "store_name",
+        "label": "Name",
+        "default": "Store Name"
+      },
+      {
+        "type": "textarea",
+        "id": "store_slogan",
+        "label": "Slogan",
+        "default": "Store Slogan"
+      },
+      {
+        "type": "image_picker",
+        "id": "store_logo",
+        "label": "Logo"
+      }
+    ]
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Border colors",
+        "default": "#e5e5e5"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Body text",
+        "default": "#333333"
+      }
+    ]
+  }
+]

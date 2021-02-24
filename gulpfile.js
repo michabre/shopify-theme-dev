@@ -24,8 +24,8 @@ const dir = {
     "src/js/dependencies/*.js",
     "src/js/*.js",
   ],
-  styles: "assets/",
-  scripts: "assets/",
+  styles: "theme/assets/",
+  scripts: "theme/assets/",
 };
 
 // CSS task
