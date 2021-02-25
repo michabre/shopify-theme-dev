@@ -3,8 +3,6 @@
 A Contact page to your store to let customers get in touch with you
 
 -->
-{% layout 'alternative' %}
-
 <h2>{{ page.title }}</h2>
 
 <div>{{ page.content }}</div>
@@ -22,3 +20,5 @@ A Contact page to your store to let customers get in touch with you
   <textarea rows="10" id="ContactFormMessage" name="contact[body]"></textarea>
   <input type="submit" value="send">
 {% endform %}
+
+{% section 'main' %}
