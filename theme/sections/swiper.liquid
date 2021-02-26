@@ -1,9 +1,21 @@
 <!-- Swiper -->
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        {% for slide in (1..10) %}
+        {% comment %} {% for slide in (1..10) %}
             {% render 'swiper-slide', number: slide %}
+        {% endfor %} {% endcomment %}
+
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when 'image_picker' %}
+              {% render 'swiper-slide', 
+                attributes: block.shopify_attributes,
+                title: block.settings.swiper_image_title, 
+                image: block.settings.swiper_image %}
+            {% endcase %}
         {% endfor %}
+
+        
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
@@ -13,6 +25,33 @@
   {
     "name": "Swiper",
     "tag": "section",
+    "max_blocks": 5,
+    "settings": [
+        {
+            "type": "text",
+            "id": "swiper_title",
+            "label": "Title",
+            "default": "Swiper Title"
+        }
+    ],
+    "blocks": [
+        {
+          "type": "image_picker",
+          "name": "Image",
+          "settings": [
+            {
+              "type": "text",
+              "id": "swiper_image_title",
+              "label": "Title"
+            },
+            {
+              "type": "image_picker",
+              "id": "swiper_image",
+              "label": "Slide"
+            }
+          ]
+        }
+    ],
     "presets": [
       {
         "name": "Swiper",
