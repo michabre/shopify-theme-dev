@@ -14,12 +14,31 @@
                 image: block.settings.swiper_image %}
             {% endcase %}
         {% endfor %}
-
-        
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>
+
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
 </div>
+
+<script>
+$(function () {
+  const swiper = new Swiper(".swiper-container", {
+    slidesPerView: {{ section.settings.swiper_slidesPerView }},
+    //spaceBetween: 30,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+});
+</script>
 
 {% schema %}
   {
@@ -32,6 +51,16 @@
             "id": "swiper_title",
             "label": "Title",
             "default": "Swiper Title"
+        },
+        {
+          "type": "range",
+          "id": "swiper_slidesPerView",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "unit": "num",
+          "label": "Slides Per View",
+          "default": 1
         }
     ],
     "blocks": [
@@ -90,14 +119,4 @@
 }
 {% endstylesheet %}
 {% javascript %}
-$(function () {
-  const swiper = new Swiper(".swiper-container", {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-});
 {% endjavascript %}
