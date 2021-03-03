@@ -91,9 +91,7 @@
 {% endstylesheet %}
 {% javascript %}
 $(function () {
-  console.log("ready!");
-
-  var swiper = new Swiper(".swiper-container", {
+  const swiper = new Swiper(".swiper-container", {
     slidesPerView: 3,
     spaceBetween: 30,
     pagination: {
