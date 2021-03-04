@@ -1,10 +1,14 @@
+<!-- sections/swiper.liquid -->
+{%- comment -%}
+
+Swiper
+Section using Swiper, the most modern mobile touch slider
+https://swiperjs.com/
+
+{%- endcomment -%}
 <!-- Swiper -->
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        {% comment %} {% for slide in (1..10) %}
-            {% render 'swiper-slide', number: slide %}
-        {% endfor %} {% endcomment %}
-
         {% for block in section.blocks %}
           {% case block.type %}
             {% when 'image_picker' %}
@@ -15,42 +19,42 @@
             {% endcase %}
         {% endfor %}
     </div>
-    <!-- Add Pagination -->
-    <div class="swiper-pagination"></div>
 
-    <!-- Add Arrows -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+    {% if section.settings.swiper_pagination %}
+      <!-- Pagination -->
+      <div class="swiper-pagination"></div>
+    {% endif %}
+
+    {% if section.settings.swiper_navigation %}
+      <!--Navigation Buttons -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    {% endif %}
+
+    {% if section.settings.swiper_scrollbar %}
+      <!-- Scrollbar -->
+      <div class="swiper-scrollbar"></div>
+    {% endif %}
 </div>
 
 <script>
-$(function () {
-  const swiper = new Swiper(".swiper-container", {
-    slidesPerView: {{ section.settings.swiper_slidesPerView }},
-    //spaceBetween: 30,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-});
+const swiperSettings = {
+  slidesPerView: {{ section.settings.swiper_slidesPerView }}
+}; 
 </script>
 
 {% schema %}
   {
     "name": "Swiper",
+    "class": "swiper-section",
     "tag": "section",
     "max_blocks": 5,
     "settings": [
         {
-            "type": "text",
-            "id": "swiper_title",
-            "label": "Title",
-            "default": "Swiper Title"
+          "type": "text",
+          "id": "swiper_title",
+          "label": "Title",
+          "default": "Swiper Title"
         },
         {
           "type": "range",
@@ -58,9 +62,29 @@ $(function () {
           "min": 1,
           "max": 5,
           "step": 1,
-          "unit": "num",
           "label": "Slides Per View",
           "default": 1
+        },
+        {
+          "type": "checkbox",
+          "id": "swiper_pagination",
+          "label": "Enable Pagination",
+          "default": false,
+          "info": "Select to add pagination."
+        },
+        {
+          "type": "checkbox",
+          "id": "swiper_navigation",
+          "label": "Enable Navigation Arrows",
+          "default": false,
+          "info": "Select to add left and right navigation arrows."
+        },
+        {
+          "type": "checkbox",
+          "id": "swiper_scrollbar",
+          "label": "Enable Scrollbar",
+          "default": false,
+          "info": "Select to add a scrollbar."
         }
     ],
     "blocks": [
@@ -86,7 +110,15 @@ $(function () {
         "name": "Swiper",
         "category": "Slideshows"
       }
-    ]
+    ],
+    "locales": {
+      "en": {
+        "swiper_title": "Welcome"
+      },
+      "fr": {
+        "swiper_title": "Bienvenue"
+      }
+    }
   }
 {% endschema %}
 
@@ -119,4 +151,18 @@ $(function () {
 }
 {% endstylesheet %}
 {% javascript %}
+$(function () {
+  const swiper = new Swiper(".swiper-container", {
+    slidesPerView: swiperSettings.slidesPerView,
+    //spaceBetween: 30,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+}, swiperSettings);
 {% endjavascript %}
