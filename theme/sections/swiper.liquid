@@ -6,7 +6,19 @@ Section using Swiper, the most modern mobile touch slider
 https://swiperjs.com/
 
 {%- endcomment -%}
+
 <!-- Swiper -->
+{% assign title = section.settings.swiper_title %}
+{% assign tagline = section.settings.swiper_tagline %}
+
+{% if title %}
+  <h2 class="title">{{ title }}</h2>
+{% endif %}
+
+{% if tagline %}
+  <h3 class="subtitle">{{ tagline }}</h3>
+{% endif %}
+
 <div class="swiper-container">
     <div class="swiper-wrapper">
         {% for block in section.blocks %}
@@ -37,9 +49,19 @@ https://swiperjs.com/
     {% endif %}
 </div>
 
+<style>
+:root {
+    --swiper-theme-color: {{ section.settings.swiper_colour_theme }};
+}
+</style>
+
 <script>
 const swiperSettings = {
-  slidesPerView: {{ section.settings.swiper_slidesPerView }}
+  slidesPerView: {{ section.settings.swiper_slidesPerView }},
+  speed: {{ section.settings.swiper_speed }},
+  spaceBetween: {{ section.settings.swiper_spaceBetween }},
+  effect: '{{ section.settings.swiper_effect }}',
+  hashNavigation: {{ section.settings.swiper_hash_navigation }}
 }; 
 </script>
 
@@ -57,6 +79,12 @@ const swiperSettings = {
           "default": "Swiper Title"
         },
         {
+            "type": "richtext",
+            "id": "swiper_tagline",
+            "label": "Tagline",
+            "default": "<p>Images for the summer.</p>"
+        },
+        {
           "type": "range",
           "id": "swiper_slidesPerView",
           "min": 1,
@@ -64,6 +92,30 @@ const swiperSettings = {
           "step": 1,
           "label": "Slides Per View",
           "default": 1
+        },
+        {
+          "type": "range",
+          "id": "swiper_speed",
+          "min": 100,
+          "max": 5000,
+          "step": 100,
+          "label": "Speed",
+          "default": 400
+        },
+        {
+          "type": "range",
+          "id": "swiper_spaceBetween",
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "label": "Space Between Slides",
+          "default": 20
+        },
+        {
+          "type": "color",
+          "id": "swiper_colour_theme",
+          "label": "Colour Theme",
+          "default": "#ffffff"
         },
         {
           "type": "checkbox",
@@ -85,6 +137,27 @@ const swiperSettings = {
           "label": "Enable Scrollbar",
           "default": false,
           "info": "Select to add a scrollbar."
+        },
+        {
+          "type": "checkbox",
+          "id": "swiper_hash_navigation",
+          "label": "Support Hash Navigation",
+          "default": false,
+          "info": "Allows to load page with specific slide opened. ie. //store-url#slide4"
+        },
+        {
+          "type": "select",
+          "id": "swiper_effect",
+          "options": [
+              { "value": "slide", "label": "Slide"},
+              { "value": "fade", "label": "Fade"},
+              { "value": "cube", "label": "Cube"},
+              { "value": "coverflow", "label": "Coverflow"},
+              { "value": "flip", "label": "Flip"}
+          ],
+          "label": "Effects",
+          "default": "slide",
+          "info": "Select a slide transition effect."
         }
     ],
     "blocks": [
@@ -153,8 +226,14 @@ const swiperSettings = {
 {% javascript %}
 $(function () {
   const swiper = new Swiper(".swiper-container", {
+    effect: swiperSettings.effect,
     slidesPerView: swiperSettings.slidesPerView,
-    //spaceBetween: 30,
+    speed: swiperSettings.speed,
+    spaceBetween: swiperSettings.spaceBetween,
+    hashNavigation: {
+      replaceState: swiperSettings.hashNavigation,
+    },
+    autoHeight: false,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
