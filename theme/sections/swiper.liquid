@@ -18,8 +18,9 @@ https://swiperjs.com/
 {% if tagline %}
   <h3 class="subtitle">{{ tagline }}</h3>
 {% endif %}
+<p>ID: {{ section.id }}</p>
 
-<div class="swiper-container">
+<div id="swiper-{{ section.id }}" class="swiper-container" data-section="{{ section.id }}">
     <div class="swiper-wrapper">
         {% for block in section.blocks %}
           {% case block.type %}
@@ -50,19 +51,30 @@ https://swiperjs.com/
 </div>
 
 <style>
-:root {
+#swiper-{{ section.id }} {
     --swiper-theme-color: {{ section.settings.swiper_colour_theme }};
 }
 </style>
 
 <script>
-const swiperSettings = {
+let swiperSettings_{{section.id}} = {
   slidesPerView: {{ section.settings.swiper_slidesPerView }},
   speed: {{ section.settings.swiper_speed }},
   spaceBetween: {{ section.settings.swiper_spaceBetween }},
   effect: '{{ section.settings.swiper_effect }}',
-  hashNavigation: {{ section.settings.swiper_hash_navigation }}
-}; 
+  hashNavigation: {{ section.settings.swiper_hash_navigation }},
+  autoHeight: false,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+};
+
+let swiper_{{section.id}} = new Swiper("#swiper-{{section.id}}.swiper-container", swiperSettings_{{section.id}});
 </script>
 
 {% schema %}
@@ -224,24 +236,7 @@ const swiperSettings = {
 }
 {% endstylesheet %}
 {% javascript %}
-$(function () {
-  const swiper = new Swiper(".swiper-container", {
-    effect: swiperSettings.effect,
-    slidesPerView: swiperSettings.slidesPerView,
-    speed: swiperSettings.speed,
-    spaceBetween: swiperSettings.spaceBetween,
-    hashNavigation: {
-      replaceState: swiperSettings.hashNavigation,
-    },
-    autoHeight: false,
-    navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-}, swiperSettings);
+$(function () {  
+  console.log('swiper added');
+});
 {% endjavascript %}
