@@ -18,7 +18,6 @@ https://swiperjs.com/
 {% if tagline %}
   <h3 class="subtitle">{{ tagline }}</h3>
 {% endif %}
-<p>ID: {{ section.id }}</p>
 
 <div id="swiper-{{ section.id }}" class="swiper-container" data-section="{{ section.id }}">
     <div class="swiper-wrapper">
@@ -75,6 +74,7 @@ let swiperSettings_{{section.id}} = {
 };
 
 let swiper_{{section.id}} = new Swiper("#swiper-{{section.id}}.swiper-container", swiperSettings_{{section.id}});
+
 </script>
 
 {% schema %}
@@ -235,8 +235,3 @@ let swiper_{{section.id}} = new Swiper("#swiper-{{section.id}}.swiper-container"
     }
 }
 {% endstylesheet %}
-{% javascript %}
-$(function () {  
-  console.log('swiper added');
-});
-{% endjavascript %}
