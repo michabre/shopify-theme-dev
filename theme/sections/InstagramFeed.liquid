@@ -12,6 +12,7 @@
         'display_biography': true,
         'display_gallery': true,
         'display_captions': true,
+        'display_igtv': false,
         'max_tries': 8,
         'callback': null,
         'styling': true,
@@ -34,6 +35,153 @@
             "id": "instagramFeed_title",
             "label": "Title",
             "default": "InstagramFeed"
+        },
+        {
+            "type": "header",
+            "content": "Instagram"
+        },
+        {
+            "type": "text",
+            "id": "instagramFeed_username",
+            "label": "Username",
+            "default": "shopify"
+        },
+        {
+            "type": "header",
+            "content": "Display Options"
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_display_profile",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Display Profile",
+          "default": "true",
+          "info": "Enables displaying the profile."
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_display_biography",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Display Biography",
+          "default": "true",
+          "info": "Enables displaying the biography."
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_display_gallery",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Display Gallery",
+          "default": "true",
+          "info": "Enables displaying the gallery."
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_display_captions",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Display Captions",
+          "default": "true",
+          "info": "Enables displaying captions for each post as overlay on hover."
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_display_igtv",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Display IGTV",
+          "default": "false",
+          "info": "Enables displaying the IGTV feed if available."
+        },
+        {
+          "type": "header",
+          "content": "Item Configuration"
+        },
+        {
+          "type": "range",
+          "id": "instagramFeed_items",
+          "min": 0,
+          "max": 12,
+          "step": 1,
+          "label": "Number of Items",
+          "default": 8,
+          "info": "Number of items to display. Up to 12."
+        },
+        {
+          "type": "range",
+          "id": "instagramFeed_items_per_row",
+          "min": 1,
+          "max": 10,
+          "step": 1,
+          "label": "Items Per Row",
+          "default": 4,
+          "info": "Number of items that will be displayed for each row."
+        },
+        {
+          "type": "range",
+          "id": "instagramFeed_margin",
+          "min": 0,
+          "max": 1,
+          "step": 0.1,
+          "label": "Margin",
+          "default": 0.5,
+          "info": "Margin (percentage) between items in gallery/igtv."
+        },
+        {
+          "type": "header",
+          "content": "Images"
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_image_size",
+          "options": [
+              { "value": "150", "label": "150"},
+              { "value": "240", "label": "240"},
+              { "value": "320", "label": "320"},
+              { "value": "480", "label": "480"},
+              { "value": "640", "label": "640"}
+          ],
+          "label": "Image Size",
+          "default": "640",
+          "info": "Native resolution of the images that will be displayed in the gallery. Accepted values [150, 240, 320, 480, 640]. Does not apply to video previews."
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_lazy_load",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Lazy Load",
+          "default": "false",
+          "info": "Enable lazy load of images using native web attribute loading="lazy" on img elements."
+        },
+        {
+          "type": "header",
+          "content": "Styles"
+        },
+        {
+          "type": "select",
+          "id": "instagramFeed_styling",
+          "options": [
+              { "value": "true", "label": "True"},
+              { "value": "false", "label": "False"}
+          ],
+          "label": "Styling",
+          "default": "true",
+          "info": "Enables default inline CSS styles."
         }
     ],
     "presets": [
