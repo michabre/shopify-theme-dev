@@ -1,0 +1,52 @@
+<section class="section">
+  <h2 class="title">{{ section.settings.instagramFeed_title }}</h2>
+  <div id="instagram-feed1"></div>
+</section>
+
+<script>
+(function(){
+    new InstagramFeed({
+        'username': 'br4veheart',
+        'container': document.getElementById("instagram-feed1"),
+        'display_profile': true,
+        'display_biography': true,
+        'display_gallery': true,
+        'display_captions': true,
+        'max_tries': 8,
+        'callback': null,
+        'styling': true,
+        'items': 8,
+        'items_per_row': 4,
+        'margin': 1,
+        'lazy_load': true,
+        'on_error': console.error
+    });
+})();
+</script>
+
+{% schema %}
+{
+    "name": "InstagramFeed",
+    "tag": "section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "instagramFeed_title",
+            "label": "Title",
+            "default": "InstagramFeed"
+        }
+    ],
+    "presets": [
+      {
+        "name": "InstagramFeed",
+        "category": "Social Media"
+      }
+    ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}
+
+{% stylesheet %}
+{% endstylesheet %}
