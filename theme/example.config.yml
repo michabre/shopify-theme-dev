@@ -1,0 +1,8 @@
+development:
+  password: 
+  theme_id: ""
+  store:
+production:
+  password: 
+  theme_id: ""
+  store:  
